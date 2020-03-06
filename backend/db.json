@@ -4,5 +4,43 @@
       "username": "pippo",
       "hashedPassword": "$2a$08$Y5B088fkgQ1Wwc.c2mC.2ekfFhCWP469qiDb2pNeOj4magqeKnUk."
     }
+  ],
+  "messages": [
+    {
+      "id": 0,
+      "content": "Italy",
+      "lat": 42.5,
+      "lon": 12.5
+    },
+    {
+      "id": 1,
+      "content": "Spain",
+      "lat": 40,
+      "lon": -2
+    },
+    {
+      "id": 2,
+      "content": "Francia",
+      "lat": 47.17627203202387,
+      "lon": 2.917968481779099
+    },
+    {
+      "id": 3,
+      "content": "Polonia",
+      "lat": 51.24953859749793,
+      "lon": 18.650390356779102
+    },
+    {
+      "id": 4,
+      "content": "Marocco",
+      "lat": 33.23133620810859,
+      "lon": -4.728515893220902
+    },
+    {
+      "id": 5,
+      "content": "Brescia",
+      "lat": 45.541552599999996,
+      "lon": 10.2118019
+    }
   ]
 }

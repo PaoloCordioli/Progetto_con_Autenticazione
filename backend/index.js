@@ -44,6 +44,10 @@ const validateToken = (req, res) => {
   })
 }
 
+app.get('/Messages', function (req, res) {
+  res.send(db.get('messages'))
+});
+
 app.get('/test', (req, res) => {
   validateToken(req, res)
   res.send({
