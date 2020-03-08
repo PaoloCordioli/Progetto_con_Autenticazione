@@ -1,5 +1,9 @@
 .leaflet-container {
     height: 550px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 .title{

@@ -1,43 +1,21 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom';
 import './Login.css'
 
 export default class login extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            token: ''
-        }
-        this.signIn = this.signIn.bind(this)
-    }
+    signIn = (event) => {
+        this.props.signIn(this.username.value, this.password.value, event)
 
-    signIn = async (e) => {
-        if (this.username.value !== '' && this.password.value !== '') {
-            e.preventDefault()
-            let response = await fetch("http://localhost:5000/users/" + this.username.value, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ password: this.password.value })
-            }).then((res) => res.json())
-
-            this.setState({ token: response.token })
-            this.username.value = ''
-            this.password.value = ''
-
-            let history = useHistory();
-            history.push('/addMessage');
-        }
+        this.username.value = ''
+        this.password.value = ''
     }
 
     render() {
         return (
             <div>
                 <h2 className="title">Sign in to add a message</h2>
+                {this.props.error}
                 <Form className="form" onSubmit={this.signIn}>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>
@@ -49,6 +27,9 @@ export default class login extends Component {
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" ref={(text) => { this.password = text }} />
+                        <Form.Text className="text-muted">
+                            We'll never share your password with anyone else.
+                        </Form.Text>
                     </Form.Group>
                     <Button variant="light" type="submit" className="btn btn-outline-dark">
                         Sign
@@ -58,4 +39,3 @@ export default class login extends Component {
         )
     }
 }
-

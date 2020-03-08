@@ -3,6 +3,13 @@
     {
       "username": "pippo",
       "hashedPassword": "$2a$08$Y5B088fkgQ1Wwc.c2mC.2ekfFhCWP469qiDb2pNeOj4magqeKnUk."
+    },
+    {
+      "hashedPassword": "$2a$08$GANHAVDKGBw7E.UfzfSLQO4U/9suT3Kzn5okOYiGFvEcCUiyM0nT."
+    },
+    {
+      "username": "paolo",
+      "hashedPassword": "$2a$08$WzzSLD3U/RLp7to1qAT7ou/uckJ/bPaOQsv3uL5YsRMfoYknh0RAS"
     }
   ],
   "messages": [

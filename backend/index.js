@@ -44,14 +44,17 @@ const validateToken = (req, res) => {
   })
 }
 
-app.get('/Messages', function (req, res) {
+app.get('/messages', function (req, res) {
   res.send(db.get('messages'))
 });
 
-app.get('/test', (req, res) => {
+app.get('/message', (req, res) => {
   validateToken(req, res)
   res.send({
-    status: 'authorized'
+    ok: true,
+    data: {
+      err: ''
+    }
   })
 })
 
@@ -59,17 +62,41 @@ app.post('/users/:username', async (req, res) => {
   const password = req.body.password
   const username = req.params.username
 
-  const user = db.get('users').find({ username }).value()
+  const user = db.get("users").find({ username }).value()
 
-  const token = jwt.sign({ username }, process.env.SECRET, { expiresIn: 86400 })
+  if (user) {
+    const authenticated = await bcrypt.compare(password, user.hashedPassword)
 
-  const authenticated = await bcrypt.compare(password, user.hashedPassword)
+    if (authenticated) {
+      const token = jwt.sign({ username }, process.env.SECRET, { expiresIn: 86400 })
+      res.send({
+        ok: true,
+        data: {
+          token,
+          err: ''
+        }
+      })
+    }
+    else {
+      res.send({
+        ok: false,
+        data: {
+          token: '',
+          err: 'error with password'
+        }
+      })
+    }
+  }
 
-  res.send({
-    authenticated,
-    token
+  else res.send({
+    ok: false,
+    data: {
+      token: '',
+      err: 'error with username'
+    }
   })
-});
+
+})
 
 app.post('/users', async (req, res) => {
   const { username, password } = req.body

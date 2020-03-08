@@ -8,10 +8,9 @@ import {
 
 import {Navbar,Nav} from 'react-bootstrap';
 
-import Login from './Components/Login'
+import LoginPage from './Components/LoginPage'
 import Home from './Components/Home'
 import Register from './Components/Register'
-import AddMessage from "./Components/AddMessage";
 
 export default function BasicExample() {
   return (
@@ -31,13 +30,10 @@ export default function BasicExample() {
             <Home />
           </Route>
           <Route path="/login">
-            <Login />
+            <LoginPage />
           </Route>
           <Route path="/register">
             <Register />
-          </Route>
-          <Route exact path="/addMessage">
-            <AddMessage />
           </Route>
         </Switch>
     </Router>
