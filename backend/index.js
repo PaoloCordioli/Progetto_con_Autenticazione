@@ -122,6 +122,35 @@ app.post('/users', async (req, res) => {
   res.send(newUser)
 });
 
+app.get('/login', (req, res) => {
+  res.send(db.get('login'))
+})
+
+app.post('/login', async (req, res) => {
+  const { login, token, username } = req.body
+
+  if(login){
+    find = "false"
+    newLogin = "true"
+    newToken = token
+    newUsername = username
+  }else {
+    find = "true"
+    newLogin = "false"
+    newToken = ""
+    newUsername = ""
+  }
+
+  db.get('login')
+  .find({login : find})
+  .assign({ login: newLogin, token: newToken, username : newUsername})
+  .write()
+
+  res.send('ok')
+});
+
+
+
 app.listen(5000, () => {
   console.log('Example app listening on port 5000!');
 });

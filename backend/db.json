@@ -12,6 +12,13 @@
       "hashedPassword": "$2a$08$WzzSLD3U/RLp7to1qAT7ou/uckJ/bPaOQsv3uL5YsRMfoYknh0RAS"
     }
   ],
+  "login": [
+    {
+      "login": "false",
+      "username": "",
+      "token": ""
+    }
+  ],
   "messages": [
     {
       "id": 0,
