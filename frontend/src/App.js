@@ -26,11 +26,14 @@ export default function BasicExample() {
         </Navbar.Collapse>
       </Navbar>
         <Switch>
-          <Route exact path="/" component={Home}>
+          <Route exact path="/">
+            <Home /> 
           </Route>
-          <Route path="/login" component={LoginPage}>
+          <Route path="/login">
+            <LoginPage />
           </Route>
-          <Route path="/register" component={Register}>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
     </Router>

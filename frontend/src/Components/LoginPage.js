@@ -77,7 +77,7 @@ export default class LoginPage extends Component {
     render() {
         return (
             <div>
-                {this.state.login ? <AddMessage logout={this.logout} /> : <Login signIn={this.signIn} error={this.state.error} />}
+                {this.state.login ? <AddMessage logout={this.logout} username={this.state.username} /> : <Login signIn={this.signIn} error={this.state.error} />}
             </div>
         )
     }
