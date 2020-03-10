@@ -14,45 +14,45 @@
   ],
   "login": [
     {
-      "login": "false",
-      "username": "",
-      "token": ""
+      "login": "true",
+      "username": "paolo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhb2xvIiwiaWF0IjoxNTgzODYwNjg4LCJleHAiOjE1ODM5NDcwODh9.EZg7R9mRfc6CjjE2mwHXsPqPUIoKTgdLW96XoPWjY8I"
     }
   ],
   "messages": [
     {
-      "id": 0,
+      "username": "random",
       "content": "Italy",
       "lat": 42.5,
       "lon": 12.5
     },
     {
-      "id": 1,
+      "username": "random",
       "content": "Spain",
       "lat": 40,
       "lon": -2
     },
     {
-      "id": 2,
+      "username": "random",
       "content": "Francia",
       "lat": 47.17627203202387,
       "lon": 2.917968481779099
     },
     {
-      "id": 3,
+      "username": "random",
       "content": "Polonia",
       "lat": 51.24953859749793,
       "lon": 18.650390356779102
     },
     {
-      "id": 4,
+      "username": "random",
       "content": "Marocco",
       "lat": 33.23133620810859,
       "lon": -4.728515893220902
     },
     {
-      "id": 5,
-      "content": "Brescia",
+      "username": "paolo",
+      "content": "Funziona",
       "lat": 45.541552599999996,
       "lon": 10.2118019
     }

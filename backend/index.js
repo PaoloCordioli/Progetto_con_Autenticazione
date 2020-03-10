@@ -48,6 +48,12 @@ app.get('/messages', function (req, res) {
   res.send(db.get('messages'))
 });
 
+app.post('/messages', function (req, res) {
+  let newMsg = req.body
+  db.get('messages').push(newMsg).write()
+  res.send('POST request')
+});
+
 app.get('/message', (req, res) => {
   validateToken(req, res)
   res.send({
@@ -148,8 +154,6 @@ app.post('/login', async (req, res) => {
 
   res.send('ok')
 });
-
-
 
 app.listen(5000, () => {
   console.log('Example app listening on port 5000!');
