@@ -55,6 +55,12 @@
       "content": "Funziona",
       "lat": 45.541552599999996,
       "lon": 10.2118019
+    },
+    {
+      "username": "paolo",
+      "content": "Marker group",
+      "lat": 45.9975526,
+      "lon": 10.2118019
     }
   ]
 }

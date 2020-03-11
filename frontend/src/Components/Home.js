@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { Map, TileLayer } from 'react-leaflet'
 import Messages from './Messages'
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import './Home.css'
 
 export default class Home extends Component {
-    
+
     constructor(props) {
         super(props);
         this.state = {
-           messages : [] // array di messaggi
+            messages: [] // array di messaggi
         };
-     }
+    }
 
     componentWillMount = async () => {
         let obj = await fetch('http://localhost:5000/messages').then(r => r.json())
-        this.setState({messages : obj})
+        this.setState({ messages: obj })
     }
 
     render() {
@@ -22,12 +23,14 @@ export default class Home extends Component {
         return (
             <div>
                 <h2 className="title"> The GuestMap </h2>
-                <Map center={position} zoom={5}>
+                <Map center={position} zoom={5} maxZoom={18}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    <Messages messages={this.state.messages} />
+                    <MarkerClusterGroup maxClusterRadius={50}>
+                        <Messages messages={this.state.messages} />
+                    </MarkerClusterGroup>
                 </Map>
             </div>
         )
