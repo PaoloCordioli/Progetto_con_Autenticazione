@@ -19,7 +19,7 @@ const db = low(adapter)
 db.defaults({ users: [] })
   .write()
 
-const validateToken = (req, res) => {
+const validateToken = (req, res) => { // funzione che controlla token e utente
   const token = req.headers['x-access-token']
   if (!token) {
     res.send({
@@ -36,7 +36,7 @@ const validateToken = (req, res) => {
       res.send({
         ok: false,
         data: {
-          err: "unauthorized"
+          err: "token error"
         }
       })
       return
@@ -44,18 +44,16 @@ const validateToken = (req, res) => {
   })
 }
 
-app.get('/messages', function (req, res) {
+app.get('/messages', function (req, res) { // ritorna tutti i messaggi
   res.send(db.get('messages'))
 });
 
-app.post('/messages', function (req, res) {
+app.post('/messages', (req, res) => { // crea un nuovo messaggio solo se autorizzato
+  validateToken(req, res)
+  
   let newMsg = req.body
   db.get('messages').push(newMsg).write()
-  res.send('POST request')
-});
 
-app.get('/message', (req, res) => {
-  validateToken(req, res)
   res.send({
     ok: true,
     data: {
@@ -64,7 +62,7 @@ app.get('/message', (req, res) => {
   })
 })
 
-app.post('/users/:username', async (req, res) => {
+app.post('/users/:username', async (req, res) => { // permette il login e genera un token
   const password = req.body.password
   const username = req.params.username
 
@@ -104,7 +102,7 @@ app.post('/users/:username', async (req, res) => {
 
 })
 
-app.post('/users', async (req, res) => {
+app.post('/users', async (req, res) => { // crea un utente
   const { username, password } = req.body
   const hashedPassword = await bcrypt.hash(password, 8)
 
@@ -125,14 +123,19 @@ app.post('/users', async (req, res) => {
 
   db.get('users').push(newUser).write()
 
-  res.send(newUser)
+  res.send({
+    ok: true,
+    data: {
+      err: ""
+    }
+  })
 });
 
-app.get('/login', (req, res) => {
+app.get('/login', (req, res) => { // ritorna il login dal db
   res.send(db.get('login'))
 })
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req, res) => { // modifica il login dal db
   const { login, token, username } = req.body
 
   if(login){
