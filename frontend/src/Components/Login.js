@@ -32,7 +32,7 @@ export default class login extends Component {
                         </Form.Text>
                     </Form.Group>
                     <Button variant="light" type="submit" className="btn btn-outline-dark">
-                        Sign
+                        Sign In
                     </Button>
                 </Form>
             </div>

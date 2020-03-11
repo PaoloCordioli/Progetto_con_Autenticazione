@@ -9,11 +9,9 @@ class addMessage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            message: "''",
             lat: "",
             lon: "",
-            error: "",
-            username: ""
+            error: ""
         }
     }
 
@@ -24,14 +22,11 @@ class addMessage extends Component {
     add = async (event) => {
         event.preventDefault()
         if (this.message.value === "") {
-            this.setState({ error: <h5 className="error">Inserire il messaggio!</h5> })
+            this.setState({ error: <h6 className="error">Inserire il messaggio!</h6> })
             return
         }
-
-        await this.setState({ username : this.props.username})
-        await this.setState({ message: this.message.value })
-        await this.setState({ lat : this.props.coords.latitude })
-        await this.setState({ lon : this.props.coords.longitude })
+        await this.setState({ lat: this.props.coords.latitude })
+        await this.setState({ lon: this.props.coords.longitude })
         await this.setState({ error: "" })
 
         fetch("http://localhost:5000/messages", {
@@ -39,15 +34,21 @@ class addMessage extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'x-access-token' : this.props.token,
             },
-            body: JSON.stringify({ username : this.state.username, content : this.state.message, lat : this.state.lat, lon : this.state.lon})
+            body: JSON.stringify({ username: this.props.username, content: this.message.value, lat: this.state.lat, lon: this.state.lon })
         }).then((res) => res.json())
+
+        this.setState({error : <h6 className="error">Messaggio inserito corretamente!</h6> })
+        
+        this.message.value = ""
     }
 
     render() {
         return (
             <div>
-                <h2 className="title">Add a messagge to GuestMap</h2>
+                <h2 className="title" >Add a messagge to GuestMap</h2>
+                <h4 className="head" >Berntornato {this.props.username}!</h4>
                 {this.state.error}
                 <Form className="form" onSubmit={this.add}>
                     <Form.Group>
