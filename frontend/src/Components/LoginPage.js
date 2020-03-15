@@ -16,7 +16,7 @@ export default class LoginPage extends Component {
     }
 
     componentWillMount = async () => {
-        let obj = await fetch('http://localhost:5000/login').then(r => r.json())
+        let obj = await fetch('http://localhost:8000/login').then(r => r.json())
 
         if (obj[0].login === "true") {
             this.setState({ login: true })
@@ -33,7 +33,7 @@ export default class LoginPage extends Component {
             return
         }
 
-        let response = await fetch("http://localhost:5000/users/" + username, {
+        let response = await fetch("http://localhost:8000/users/" + username, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -47,7 +47,7 @@ export default class LoginPage extends Component {
             this.setState({ login: true })
             this.setState({ username : username})
 
-            fetch("http://localhost:5000/login", {
+            fetch("http://localhost:8000/login", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -64,7 +64,7 @@ export default class LoginPage extends Component {
         this.setState({ token: "" })
         this.setState({ error: "" })
 
-        fetch("http://localhost:5000/login", {
+        fetch("http://localhost:8000/login", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

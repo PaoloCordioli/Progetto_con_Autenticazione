@@ -21,15 +21,17 @@ class addMessage extends Component {
 
     add = async (event) => {
         event.preventDefault()
+        
         if (this.message.value === "") {
             this.setState({ error: <h6 className="error">Inserire il messaggio!</h6> })
             return
         }
+        
         await this.setState({ lat: this.props.coords.latitude })
         await this.setState({ lon: this.props.coords.longitude })
         await this.setState({ error: "" })
 
-        fetch("http://localhost:5000/messages", {
+        fetch("http://localhost:8080/messages", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

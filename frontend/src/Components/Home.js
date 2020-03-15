@@ -14,7 +14,7 @@ export default class Home extends Component {
     }
 
     componentWillMount = async () => {
-        let obj = await fetch('http://localhost:5000/messages').then(r => r.json())
+        let obj = await fetch('http://localhost:8080/messages').then(r => r.json())
         this.setState({ messages: obj })
     }
 

@@ -1,0 +1,20 @@
+{
+  "messages": [],
+  "users": [
+    {
+      "username": "paolo",
+      "hashedPassword": "$2a$08$zLvxyP90edtEkSt/zpGe6uNq2933IznYLeYJM52Ckl0UgFPEYvmgu"
+    },
+    {
+      "username": "giulia",
+      "hashedPassword": "$2a$08$A0L1E9FaHJTZJQqomNdwiuFwdzagpK3KC8aoDyj4E.OUhOM.lRHPW"
+    }
+  ],
+  "login": [
+    {
+      "login": "true",
+      "username": "paolo",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBhb2xvIiwiaWF0IjoxNTg0Mjc0NzE2LCJleHAiOjE1ODQzNjExMTZ9.bFzRokrd4uRWgCtL-s5f2erlVde6BqUDBN5Cgk3U0RM"
+    }
+  ]
+}

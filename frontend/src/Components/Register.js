@@ -22,7 +22,7 @@ export default class register extends Component {
             return
         }
         
-        let result  = await fetch("http://localhost:5000/users", {
+        let result  = await fetch("http://localhost:8000/users", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
