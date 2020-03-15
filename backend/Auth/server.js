@@ -124,33 +124,6 @@ app.post('/users/:username', async (req, res) => { // permette il login e genera
 
 })
 
-app.get('/login', (req, res) => { // ritorna il login dal db
-    res.send(db.get('login'))
-})
-
-app.post('/login', async (req, res) => { // modifica il login dal db
-    const { login, token, username } = req.body
-
-    if (login) {
-        find = "false"
-        newLogin = "true"
-        newToken = token
-        newUsername = username
-    } else {
-        find = "true"
-        newLogin = "false"
-        newToken = ""
-        newUsername = ""
-    }
-
-    db.get('login')
-        .find({ login: find })
-        .assign({ login: newLogin, token: newToken, username: newUsername })
-        .write()
-
-    res.send('ok')
-});
-
 app.listen(8000, () => {
     console.log('Example Auth listening on port 8000!');
 });

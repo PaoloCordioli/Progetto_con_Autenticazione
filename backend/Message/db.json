@@ -47,6 +47,12 @@
       "content": "Funziona con i due server!!",
       "lat": 45.541552599999996,
       "lon": 10.2118019
+    },
+    {
+      "username": "paolo",
+      "content": "Funziona il local storage",
+      "lat": 45.541552599999996,
+      "lon": 10.2118019
     }
   ]
 }

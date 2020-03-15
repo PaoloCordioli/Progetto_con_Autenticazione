@@ -7,21 +7,21 @@ export default class LoginPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            login : false,
-            error : "",
-            username : "" ,
-            token : ""
+            login: false,
+            error: "",
+            username: "",
+            token: ""
         }
         this.signIn = this.signIn.bind(this)
     }
 
     componentWillMount = async () => {
-        let obj = await fetch('http://localhost:8000/login').then(r => r.json())
+        let login = localStorage.getItem("login")
 
-        if (obj[0].login === "true") {
+        if (login === "true") {
             this.setState({ login: true })
-            this.setState({ token : obj[0].token })
-            this.setState({ username : obj[0].username })
+            this.setState({ token: localStorage.getItem("token") })
+            this.setState({ username: localStorage.getItem("username") })
         }
     }
 
@@ -45,33 +45,24 @@ export default class LoginPage extends Component {
         if (response.ok === true) {
             this.setState({ token: response.data.token })
             this.setState({ login: true })
-            this.setState({ username : username})
+            this.setState({ username: username })
 
-            fetch("http://localhost:8000/login", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ login : this.state.login, token : this.state.token, username : this.state.username })
-            }).then((res) => res.json())
+            localStorage.setItem("login", this.state.login)
+            localStorage.setItem("username", this.state.username)
+            localStorage.setItem("token", this.state.token)
         }
         else this.setState({ error: <h5 className="error"> Password o username errati! </h5> })
     }
 
-    logout = () => {
-        this.setState({ login: false })
-        this.setState({ token: "" })
-        this.setState({ error: "" })
+    logout = async () => {
+        await this.setState({ login: false })
+        await this.setState({ username: "" })
+        await this.setState({ token: "" })
+        await this.setState({ error: "" })
 
-        fetch("http://localhost:8000/login", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ login : false, token : "", username : "" })
-        }).then((res) => res.json())
+        localStorage.setItem("login", this.state.login)
+        localStorage.setItem("username", this.state.username)
+        localStorage.setItem("token", this.state.token)
     }
 
     render() {
