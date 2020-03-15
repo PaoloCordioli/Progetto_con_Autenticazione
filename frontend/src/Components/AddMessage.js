@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Container, Col, Row } from 'react-bootstrap'
 import { geolocated } from 'react-geolocated';
+import  moment from 'moment'
 
 import './addMessage.css'
 
@@ -31,6 +32,8 @@ class addMessage extends Component {
         await this.setState({ lon: this.props.coords.longitude })
         await this.setState({ error: "" })
 
+        let date = moment().format('DD-MM-YYYY HH:mm')
+
         fetch("http://localhost:8080/messages", {
             method: 'POST',
             headers: {
@@ -38,7 +41,7 @@ class addMessage extends Component {
                 'Content-Type': 'application/json',
                 'x-access-token' : this.props.token,
             },
-            body: JSON.stringify({ username: this.props.username, content: this.message.value, lat: this.state.lat, lon: this.state.lon })
+            body: JSON.stringify({ username: this.props.username, content: this.message.value, lat: this.state.lat, lon: this.state.lon, date: date})
         }).then((res) => res.json())
 
         this.setState({error : <h6 className="error">Messaggio inserito corretamente!</h6> })
