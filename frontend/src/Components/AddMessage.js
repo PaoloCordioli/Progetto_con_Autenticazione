@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Container, Col, Row } from 'react-bootstrap'
 import { geolocated } from 'react-geolocated';
-import  moment from 'moment'
+import moment from 'moment'
 
 import './addMessage.css'
 
@@ -22,12 +22,12 @@ class addMessage extends Component {
 
     add = async (event) => {
         event.preventDefault()
-        
+
         if (this.message.value === "") {
-            this.setState({ error: <h6 className="error">Inserire il messaggio!</h6> })
+            this.setState({ error: "Inserire il messaggio!" })
             return
         }
-        
+
         await this.setState({ lat: this.props.coords.latitude })
         await this.setState({ lon: this.props.coords.longitude })
         await this.setState({ error: "" })
@@ -39,22 +39,27 @@ class addMessage extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'x-access-token' : this.props.token,
+                'x-access-token': this.props.token,
             },
-            body: JSON.stringify({ username: this.props.username, content: this.message.value, lat: this.state.lat, lon: this.state.lon, date: date})
+            body: JSON.stringify({ username: this.props.username, content: this.message.value, lat: this.state.lat, lon: this.state.lon, date: date })
         }).then((res) => res.json())
 
-        this.setState({error : <h6 className="error">Messaggio inserito corretamente!</h6> })
-        
+        this.setState({ error: "Messaggio inserito corretamente!" })
+
         this.message.value = ""
     }
 
     render() {
         return (
             <div>
-                <h2 className="title" >Add a messagge to GuestMap</h2>
-                <h4 className="head" >Berntornato {this.props.username}!</h4>
-                {this.state.error}
+                <Container>
+                    <Row>
+                        <Col s={11} md={11} lg={11} ><h2 className="title" >Add a messagge to GuestMap</h2></Col>
+                        <Col s={1} md={1} lg={1}> <Button variant="light" type="submit" className="btn btn-outline-dark logout" onClick={this.logout} >Logout</Button></Col>
+                    </Row>
+                </Container>
+                <h4 className="head" >Bentornato {this.props.username}!</h4>
+                <h6 className="error">{this.state.error}</h6>
                 <Form className="form" onSubmit={this.add}>
                     <Form.Group>
                         <Form.Label>Message</Form.Label>
@@ -65,12 +70,6 @@ class addMessage extends Component {
                     </Button>
                 </Form>
                 <br></br>
-                <Container>
-                    <Row>
-                        <Col s={11} md={11} lg={11} ></Col>
-                        <Col s={1} md={1} lg={1}> <Button variant="light" type="submit" className="btn btn-outline-dark" onClick={this.logout} >Logout</Button></Col>
-                    </Row>
-                </Container>
             </div>
         )
     }

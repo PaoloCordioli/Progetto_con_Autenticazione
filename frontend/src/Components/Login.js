@@ -15,7 +15,7 @@ export default class login extends Component {
         return (
             <div>
                 <h2 className="title">Sign in to add a message</h2>
-                {this.props.error}
+                <h5 className="error">{this.props.error}</h5>
                 <Form className="form" onSubmit={this.signIn}>
                     <Form.Group>
                         <Form.Label>Username</Form.Label>

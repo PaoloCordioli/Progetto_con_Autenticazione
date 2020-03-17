@@ -8,6 +8,10 @@
     {
       "username": "giulia",
       "hashedPassword": "$2a$08$A0L1E9FaHJTZJQqomNdwiuFwdzagpK3KC8aoDyj4E.OUhOM.lRHPW"
+    },
+    {
+      "username": "daniela",
+      "hashedPassword": "$2a$08$ZAagnhKdTc88AYwdfSj/le22V.Ff4xZIJRfIXa13es5CgY7942Fwe"
     }
   ]
 }

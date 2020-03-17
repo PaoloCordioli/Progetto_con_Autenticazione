@@ -1,5 +1,4 @@
 const express = require('express');
-const async = require('express-async-await')
 const fetch = require('node-fetch')
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -18,14 +17,8 @@ const db = low(adapter)
 db.defaults({ messages: [] })
     .write()
 
-app.get('/messages', function (req, res) { // ritorna tutti i messaggi
-    res.send(db.get("messages"))
-});
-
-app.post("/messages", async function (req, res) {
-    const token = req.headers['x-access-token']
-
-    let auth = await fetch("http://localhost:8000/authentication", {
+const authentication = (token) => {
+    return fetch("http://localhost:8000/authentication", {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -33,6 +26,41 @@ app.post("/messages", async function (req, res) {
             'x-access-token': token,
         },
     }).then((res) => res.json())
+}    
+
+app.get('/messages', function (req, res) { // ritorna tutti i messaggi
+    res.send(db.get("messages"))
+});
+
+app.get('/messages/:username', async function (req, res) { // ritorna i messaggi di un utente
+    const token = req.headers['x-access-token']
+
+    let auth = await authentication(token)
+
+    if (!auth.ok) {
+        res.send({
+            ok: false,
+            data: {
+                err: "unauthorized"
+            }
+        })
+        return
+    }
+
+    const username = req.params.username
+
+    let messages = db.get("messages").filter(e => {
+        if(e.username === username)
+            return e
+    })
+    res.send(messages)
+    
+  });
+
+app.post("/messages", async function (req, res) {
+    const token = req.headers['x-access-token']
+
+    let auth = await authentication(token)
 
     if (!auth.ok) {
         res.send({

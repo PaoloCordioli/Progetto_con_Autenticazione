@@ -29,7 +29,7 @@ export default class LoginPage extends Component {
         event.preventDefault()
 
         if (username === '' || password === '') {
-            this.setState({ error: <h5 className="error">Password o username errati</h5> })
+            this.setState({ error: "Password o username errati" })
             return
         }
 
@@ -51,7 +51,7 @@ export default class LoginPage extends Component {
             localStorage.setItem("username", this.state.username)
             localStorage.setItem("token", this.state.token)
         }
-        else this.setState({ error: <h5 className="error"> Password o username errati! </h5> })
+        else this.setState({ error: "Password o username errati!" })
     }
 
     logout = async () => {
