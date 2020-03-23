@@ -1,41 +1,23 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import SignIn from './components/SignIn'
+import Home from './components/Home'
+import AddMessage from './components/AddMessage'
+import SignUp from './components/SignUp'
 
-import {Navbar,Nav} from 'react-bootstrap';
+function App() {
 
-import LoginPage from './Components/LoginPage'
-import Home from './Components/Home'
-import Register from './Components/Register'
-
-export default function BasicExample() {
   return (
     <Router>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand as={Link} to="/">Home</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/login">New message</Nav.Link>
-            <Nav.Link as={Link} to="/register">Register</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-        <Switch>
-          <Route exact path="/">
-            <Home /> 
-          </Route>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={SignIn} />
+        <Route path="/new_message" component={AddMessage} />
+        <Route path="/register" component={SignUp} />
+      </Switch>
     </Router>
   );
 }
+
+export default App;

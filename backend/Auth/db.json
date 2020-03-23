@@ -24,6 +24,10 @@
     {
       "username": "caso",
       "hashedPassword": "$2a$08$illLl/pCV7CWrzDPeKKZ5OO4FulGm5VC/mqa4fH07BQXPI/3mbGjm"
+    },
+    {
+      "username": "pippo",
+      "hashedPassword": "$2a$08$gZSqsC4fPOkA2fBUqWn4tO1qxRDqdIy2PI1ip2VravggMiDwm8vfK"
     }
   ]
 }

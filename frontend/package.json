@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "sample",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,11 +10,11 @@
     "leaflet": "^1.6.0",
     "leaflet.markercluster": "^1.4.1",
     "moment": "^2.24.0",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-bootstrap": "^1.0.0-beta.17",
-    "react-dom": "^16.13.0",
+    "react-dom": "^16.13.1",
     "react-geolocated": "^3.0.1",
-    "react-leaflet": "^2.6.1",
+    "react-leaflet": "^2.6.3",
     "react-leaflet-control": "^2.1.2",
     "react-leaflet-markercluster": "^2.0.0-rc3",
     "react-router-dom": "^5.1.2",

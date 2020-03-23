@@ -1,48 +1,34 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Map, TileLayer } from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-markercluster'
 import { Button } from 'react-bootstrap'
-import Messages from './Messages'
-import MarkerClusterGroup from 'react-leaflet-markercluster';
 import Control from 'react-leaflet-control';
-
+import Messages from './Messages'
+import Menu from './Menu'
 import './Home.css'
 
-export default class Home extends Component {
+function Home() {
+    const login = (localStorage.getItem('sign') === "true")
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            messages: [], // array di messaggi
-            button: "I miei messaggi", // text del bottone
-            error: "" // errore da visualizzare
-        };
-    }
+    const [messages, setMessages] = useState([])
+    const [button, setbutton] = useState("I miei messaggi")
 
-    componentWillMount = async () => {
-        let obj = await fetch('http://localhost:8080/messages').then(r => r.json())
-        this.setState({ messages: obj })
-    }
+    useEffect(() => {
+        fetch('http://localhost:8080/messages').then(r => r.json()).then(obj => setMessages(obj))
+    }, []);
 
-    seeMyMessage = async () => {
-        const username = localStorage.getItem("username")
-        
-        if (!username) {
-            this.setState({ error: "Devi essere loggato !!" })
-            return
-        }
+    const seeMyMessage = async () => {
+        if (button === "Tutti i messaggi") {
 
-        this.setState({ error: "" })
-
-        if (this.state.button === "Tutti i messaggi") {
-
-            this.setState({ button: "I miei messaggi" })
+            setbutton("I miei messaggi")
 
             let result = await fetch('http://localhost:8080/messages').then(r => r.json())
-            this.setState({ messages: result })
-
+            setMessages(result)
             return
         }
+        
         const token = localStorage.getItem("token")
+        const username = localStorage.getItem("username")
 
         let result = await fetch('http://localhost:8080/messages/' + username, {
             headers: {
@@ -52,29 +38,53 @@ export default class Home extends Component {
             }
         }).then(r => r.json())
 
-        this.setState({ messages: result })
-        this.setState({ button: "Tutti i messaggi" })
+        setMessages(result)
+        setbutton("Tutti i messaggi")
     }
 
-    render() {
-        const position = [45.51, 10.2]
+    if (login) {
         return (
             <div>
+                <Menu />
+                <div>
+                    <h2 className="title"> The GuestMap </h2>
+                    <Map center={[45.51, 10.2]} zoom={3} maxZoom={18}>
+                        <TileLayer
+                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <MarkerClusterGroup maxClusterRadius={50}>
+                            <Messages messages={messages} />
+                        </MarkerClusterGroup>
+                        <Control position="bottomright">
+                            <Button onClick={seeMyMessage} className="btn btn-outline-dark btn-light">{button}</Button>
+                        </Control>
+                    </Map>
+
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div>
+            <Menu />
+            <div>
                 <h2 className="title"> The GuestMap </h2>
-                <Map center={position} zoom={3} maxZoom={18}>
+                <Map center={[45.51, 10.2]} zoom={3} maxZoom={18}>
                     <TileLayer
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <MarkerClusterGroup maxClusterRadius={50}>
-                        <Messages messages={this.state.messages} />
+                        <Messages messages={messages} />
                     </MarkerClusterGroup>
-                    <Control position="bottomright">
-                        <h6>{this.state.error}</h6>
-                        <Button onClick={this.seeMyMessage} className="btn btn-outline-dark btn-light">{this.state.button}</Button>
-                    </Control>
                 </Map>
+
             </div>
-        )
-    }
+        </div>
+    );
 }
+
+
+export default Home
