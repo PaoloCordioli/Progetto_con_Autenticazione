@@ -1,8 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useHistory } from "react-router-dom";
-import '../App.css'
-
 
 function Menu() {
 
