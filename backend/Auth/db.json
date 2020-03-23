@@ -12,6 +12,18 @@
     {
       "username": "daniela",
       "hashedPassword": "$2a$08$ZAagnhKdTc88AYwdfSj/le22V.Ff4xZIJRfIXa13es5CgY7942Fwe"
+    },
+    {
+      "username": "tiziano",
+      "hashedPassword": "$2a$08$LPxQR5EQm.58G7O4Vw7IyuxYc9QZmOP7c0s2V1695HE1/52iMwHqG"
+    },
+    {
+      "username": "random",
+      "hashedPassword": "$2a$08$vJK7ozMS7mfOyc2Cw/Z1kuepEfx/HGTWqP97BsXvgX4v1YgwkysW."
+    },
+    {
+      "username": "caso",
+      "hashedPassword": "$2a$08$illLl/pCV7CWrzDPeKKZ5OO4FulGm5VC/mqa4fH07BQXPI/3mbGjm"
     }
   ]
 }
