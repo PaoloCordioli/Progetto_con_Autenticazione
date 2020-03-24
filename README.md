@@ -17,3 +17,6 @@ L'applicazione presente due backend, uno per gestire l'autenticazione e uno per 
 
 #### Frontend
 Il frontend è stato realizzato basandosi sul framework React, che utilizza a sua volta diversi framework tra cui: [React-Boostrap](https://react-bootstrap.github.io/ "React-Boostrap"), [React-Leaflet](https://react-leaflet.js.org/ "React-Leaflet"),[React-geolocated](https://www.npmjs.com/package/react-geolocated "react-geolocated") , [React-router-dom](https://reacttraining.com/react-router/web/guides/quick-start "React-router-dom")
+
+## Prova ora
+Se si desidera provare premere [qui](https://guest-map.now.sh/ "qui").
