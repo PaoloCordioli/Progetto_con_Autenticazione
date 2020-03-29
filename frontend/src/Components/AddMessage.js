@@ -22,7 +22,7 @@ function Message(props) {
             return
         }
 
-        fetch("http://localhost:8080/messages", {
+        let result = await fetch("https://message.paolocordioli.repl.co/messages/", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -32,9 +32,15 @@ function Message(props) {
             body: JSON.stringify({ username: username, content: message.current.value, lat: props.coords.latitude, lon: props.coords.longitude, date: date })
         }).then((res) => res.json())
 
-        setError("Messaggio inserito corretamente!")
+        if(!result.ok){
+            setError("Errore di inserimento, riprova!")
+            message.current.value = ""
+            return
+        }
 
+        setError("Messaggio inserito correttamente")
         message.current.value = ""
+
     }
 
     return (

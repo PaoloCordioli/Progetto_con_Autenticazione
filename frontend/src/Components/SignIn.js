@@ -21,7 +21,7 @@ function SignIn() {
             return
         }
 
-        let response = await fetch("http://localhost:8000/users/" + username.current.value, {
+        let response = await fetch("https://auth.paolocordioli.repl.co/users/" + username.current.value, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

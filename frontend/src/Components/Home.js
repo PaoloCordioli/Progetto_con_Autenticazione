@@ -14,7 +14,7 @@ function Home() {
     const [button, setbutton] = useState("I miei messaggi")
 
     useEffect(() => {
-        fetch('http://localhost:8080/messages').then(r => r.json()).then(obj => setMessages(obj))
+        fetch('https://message.paolocordioli.repl.co/messages').then(r => r.json()).then(obj => setMessages(obj))
     }, []);
 
     const seeMyMessage = async () => {
@@ -22,7 +22,7 @@ function Home() {
 
             setbutton("I miei messaggi")
 
-            let result = await fetch('http://localhost:8080/messages').then(r => r.json())
+            let result = await fetch('https://message.paolocordioli.repl.co/messages').then(r => r.json())
             setMessages(result)
             return
         }
@@ -30,7 +30,7 @@ function Home() {
         const token = localStorage.getItem("token")
         const username = localStorage.getItem("username")
 
-        let result = await fetch('http://localhost:8080/messages/' + username, {
+        let result = await fetch('https://message.paolocordioli.repl.co/messages/' + username, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

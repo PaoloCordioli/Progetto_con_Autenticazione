@@ -22,7 +22,7 @@ function SignUp() {
             return
         }
 
-        let result = await fetch("http://localhost:8000/users", {
+        let result = await fetch("https://auth.paolocordioli.repl.co/users", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
