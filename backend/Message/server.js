@@ -83,6 +83,26 @@ app.post("/messages", async function (req, res) {
     })
 });
 
+app.post("/all_messages", async function(req, res) {
+
+  const { messages } = req.body
+
+
+  db.set('messages', []).write()
+
+
+  messages.forEach( mes => {
+    db.get('messages').push(mes).write()
+  }) 
+
+  res.send({
+    ok: true,
+    data: {
+      err: ''
+    }
+  })
+});
+
 app.listen(8080, () => {
     console.log('Example Message listening on port 8080!');
 });
