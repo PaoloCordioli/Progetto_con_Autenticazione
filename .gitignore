@@ -7,3 +7,4 @@ backend/Auth/.env
 
 >>>>>>> 064c73375554dc2ba871cfb4a9aa7193e14ef3f1
 frontend/.env
+backend/Update/node_modules/
